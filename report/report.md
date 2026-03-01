@@ -2,6 +2,7 @@
 
 **Student ID:** 1155244509  
 **Agent name:** huangzixun_68498644 (format: nickname_XXXX)  
+**GitHub repository:** https://github.com/asimovVong/FTEC5660-HW2-Part2  
 **Maximum 4 pages** — export this document to **report.pdf** for submission.
 
 ---
@@ -9,18 +10,20 @@
 ## 1. Agent design and architecture
 
 **Objective.** The agent must (1) authenticate with the Moltbook API using an API key, (2) subscribe to `/m/ftec5660`, and (3) upvote and comment on the specified post:  
-https://www.moltbook.com/post/47ff50f3-8255-4dee-87f4-2c3637c7351c  
+[https://www.moltbook.com/post/47ff50f3-8255-4dee-87f4-2c3637c7351c](https://www.moltbook.com/post/47ff50f3-8255-4dee-87f4-2c3637c7351c)  
 
 **Design.** A deterministic state machine (no LLM) drives a fixed sequence of REST calls. The tool list is implemented according to [Moltbook skill.md](https://www.moltbook.com/skill.md), as required.
 
 **Components.**
 
-| Component | Role |
-|-----------|------|
-| `config.py` | Base URL, submolt name, target post ID, agent naming (prefix + encoded student ID from Colab). |
-| `src/moltbook_tools.py` | REST wrappers: `molt_me`, `molt_subscribe`, `molt_get_post`, `molt_upvote`, `molt_comment`. |
-| `src/agent.py` | State machine: sequential execution with retries and file logging. |
-| `run.py` / `moltbook_agent.py` | Entry points; load `.env` and invoke the agent. |
+
+| Component                      | Role                                                                                           |
+| ------------------------------ | ---------------------------------------------------------------------------------------------- |
+| `config.py`                    | Base URL, submolt name, target post ID, agent naming (prefix + encoded student ID from Colab). |
+| `src/moltbook_tools.py`        | REST wrappers: `molt_me`, `molt_subscribe`, `molt_get_post`, `molt_upvote`, `molt_comment`.    |
+| `src/agent.py`                 | State machine: sequential execution with retries and file logging.                             |
+| `run.py` / `moltbook_agent.py` | Entry points; load `.env` and invoke the agent.                                                |
+
 
 **Architecture (high level).**
 
@@ -71,25 +74,10 @@ https://www.moltbook.com/post/47ff50f3-8255-4dee-87f4-2c3637c7351c
 
 **Moltbook evidence (screenshot).**
 
-<!-- [您需要自行添加] 请在此处插入一张 Moltbook 帖子页面的截图：打开 https://www.moltbook.com/post/47ff50f3-8255-4dee-87f4-2c3637c7351c ，截图中需能清晰看到你的 upvote 以及你的评论（评论中可见 huangzixun_68498644）。可将截图保存为 report/moltbook_screenshot.png 并在此处引用，或直接粘贴到导出后的 PDF 中。 -->
-
-*[PLACEHOLDER — YOU MUST ADD]* Insert a screenshot of the Moltbook post page (https://www.moltbook.com/post/47ff50f3-8255-4dee-87f4-2c3637c7351c) showing your agent’s upvote and your comment with “huangzixun_68498644” visible. Save as e.g. `report/moltbook_screenshot.png` and include it in the exported PDF.
+![Moltbook post: upvote and comment by huangzixun_68498644](image.png)
 
 ---
 
 ## 4. Summary
 
 The agent successfully authenticates with the Moltbook API, subscribes to `/m/ftec5660`, and performs upvote and comment on the required post. The comment includes the required agent identifier (huangzixun_68498644) for grading. Logs are written to `logs/run.log` for reproducibility.
-
----
-
-## 您需要自行完成 / 提交的内容（中文）
-
-1. **Moltbook 截图**  
-   在报告第 3 节中插入一张截图：打开作业指定帖子，截图中能看出你的 upvote 和评论（评论里可见 huangzixun_68498644）。可保存为 `report/moltbook_screenshot.png` 或在 Word/排版软件中直接粘贴。
-
-2. **导出为 report.pdf**  
-   将本报告导出为 **report.pdf**，总页数不超过 **4 页**。可用 VS Code/Cursor 的 Markdown PDF 插件、Pandoc、或复制到 Word/Pages 后另存为 PDF。
-
-3. **上传到 GitHub**  
-   将 **report.pdf** 与 Part 2 的**源代码**一起放入你的**公开 GitHub 仓库**。不要提交 `.env`（内含 API key）。具体需提交的文件见 `GITHUB_SUBMISSION.md`。
