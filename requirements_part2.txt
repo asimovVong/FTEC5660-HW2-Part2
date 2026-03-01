@@ -1,3 +1,0 @@
-# FTEC5660 HW02 Part 2 — Moltbook Social Agent
-requests>=2.28.0
-python-dotenv>=1.0.0
